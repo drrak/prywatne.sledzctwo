@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Author" content="3dh"/>
+<title>Prywatne śledztwo</title>
+<script type="text/javascript">
+function getUrlVars(){return location.search.substring(1).split(',');}
+var u1;
+if(document.location.search.length){u1=getUrlVars();}
+else{u1=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];}
+var u1nw=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+var p=Number(u1[0]),
+t1=new Array(),
+t2=new Array(),
+t3=new Array(),
+ulen=u1.length;
+
+var item = new Array();
+item[1]=' Trop 1';
+item[2]=' Trop 2';
+item[3]=' Trop 3';
+item[4]=' Trop 4';
+item[5]=' Informacja 1';
+item[6]=' Informacja 2';
+item[7]=' Dowód 1';
+item[8]=' Dowód 2';
+item[9]=' Dowód 3';
+item[10]=' Dowód 4';
+item[11]=' Dowód 5';
+item[12]=' Dowód 6';
+item[13]=' Dowód 7';
+
+function load(){
+checkItems(u1);
+
+if(p==2){
+var h2a=document.getElementById('h2a');
+var h2b=document.getElementById('h2b');
+if(u1[5]!=1){
+h2b.style.display='none';h2a.style.display='block';
+}else{
+h2b.style.display='block';h2a.style.display='none';}
+}
+document.getElementById('zaw').innerHTML='<span style="cursor:help" title="Dwa tropy o tym samym numerze X, zmieniają się w dowód X.">Tropy: </span>'+t1+'<br>Informacje: '+t2+'<br>Dowody: '+t3+'<p><a href=\"?'+u1+'\">Zakładka</a></p>';
+}
+
+function checkItems(u1){
+for(var x=1;x<=ulen;++x){
+if(u1[x]==1 && x<=4){
+t1.push(item[x]);
+t1.removeDuplicates();
+}
+if(u1[x]==1 && x>=5 && x<=6){
+t2.push(item[x]);
+t2.removeDuplicates();
+}
+if(u1[x]==1 && x>=7 && x<=13){
+t3.push(item[x]);
+t3.removeDuplicates();
+}
+}
+}
+
+Array.prototype.removeDuplicates=function(){
+var input=this,
+hashObject=new Object();
+for(var i=input.length-1;i>=0;--i){
+	var currentItem=input[i]; 
+	if (hashObject[currentItem]===true){
+	input.splice(i,1);
+	}
+    hashObject[currentItem]=true;
+}
+return input;
+};
+
+function note(obj){
+var k=document.getElementById('karta'),
+z=document.getElementById('zaw'),
+t=document.getElementById('txt');
+if(z.style.display=='none'){
+z.style.display='block';
+k.style.Top='0px';
+t.style.paddingBottom='167px';
+obj.innerHTML='Schowaj Notatnik';
+}else{
+z.style.display='none';
+t.style.paddingBottom='62px';
+obj.innerHTML='Notatnik';
+}
+}
+
+function zp(st,nw){
+document.title='Prywatne śledztwo - '+nw;
+document.getElementById('p'+nw).style.display='block';
+document.getElementById('p'+st).style.display='none';
+window.scrollTo(0,0);
+p=Number(nw);
+
+if(p==6){u1nw=[0,0,1,0,0,0,0,0,0,0,0,0,0,0];}
+if(p==7){u1nw=[0,1,0,0,0,0,0,0,0,0,0,0,0,0];}
+if(p==9){u1nw=[0,1,1,0,0,0,0,0,0,0,0,0,0,0];
+if(u1[1]==1){
+u1[7]=1;
+t3.push(item[7]);
+t3.removeDuplicates();}
+if(u1[2]==1){
+u1[8]=1;
+t3.push(item[8]);
+t3.removeDuplicates();}
+}
+if(p==14){u1nw=[0,0,0,0,0,0,0,0,0,0,0,0,1,0];}
+if(p==17){u1nw=[0,1,0,1,0,0,0,0,0,0,0,0,0,0];
+if(u1[1]==1){
+u1[7]=1;
+t3.push(item[7]);
+t3.removeDuplicates();}
+}
+if(p==18){u1nw=[0,0,0,0,0,0,0,0,0,1,0,0,0,0];}
+if(p==19){u1nw=[0,0,0,0,1,0,0,0,0,0,0,0,0,0];}
+if(p==21){u1nw=[0,0,0,0,0,0,0,0,0,0,1,0,0,0];}
+if(p==25){u1nw=[0,0,0,0,0,0,0,0,0,0,0,1,0,0];}
+if(p==27){u1nw=[0,0,0,0,0,1,0,0,0,0,0,0,0,0];}
+if(p==38 || p==39){u1nw=[0,0,0,0,0,0,1,0,0,0,0,0,0,0];}
+if(p==44){u1nw=[0,0,0,0,0,0,0,0,0,0,0,0,0,1];}
+
+u1nw[0]=p;
+for(var i=1;i<=ulen;++i){
+if(u1[i]!=u1nw[i]){u1nw[i]=1;}
+}
+u1=u1nw;
+load();
+}
+</script>
+<style type="text/css">
+html,body{position:absolute;width:100%;margin:0 auto;}
+html,body,.b0{font:16px "Courier New",serif;color:#b6b6b6;padding:0;}
+html,body,.b0,#karta{background-color:#484848;}
+img{border:none;}
+#inf,.linia{border-bottom-style:solid;border-width:1px;}
+a:link,a:visited{color:#b6b6b6;background-color:#484848;text-decoration:none;}
+a:hover,a:active,[id^="p"] span,.b0:hover{color:#484848;background-color:#b6b6b6;text-decoration:none;}
+#txt{position:relative;width:92%;height:100%;top:0;padding:0 4%;padding-bottom:167px;margin: 0 auto;}
+#karta{position:fixed;bottom:0;border-top-style:solid;border-width:1px;width:92%;}
+[id^="p"]{display:none;}
+[id^="p"],.wn{margin:20px 0;clear:both;}
+[id^="p"] p{text-indent:3em;margin:4px 0;}
+h1,h2,h3,.wn{text-align:center;}
+.b0{text-indent:0;cursor:pointer;border:none;}
+.pr{font-weight:bold;}
+
+@media all and (max-height:580px){
+#inf{display:none;}
+img{width:40%;height:40%;}
+}
+@media all and (max-width:580px){
+#inf{display:none;}
+img{width:40%;height:40%;}
+}
+</style>
+</head>
+<body>
+<div id="txt">
+<div id="inf">
+<p><a href="http://masz-wybor.com.pl/">„Prywatne śledztwo” - Beniamin Muszyński</a></p>
+</div>
+<div id="p0">
+<div style="margin:0 0 800px 0;">
+<h2>Beniamin Muszyński</h2>
+<h1><i>Prywatne śledztwo</i></h1>
+<div class="wn"><i>Gra pierwotnie ukazała się w internetowym magazynie <a href="http://masz-wybor.com.pl/">„Masz Wybór”</a> (ISNN 2082-8160), w numerze 2 (3) z 2011 roku na stronach 30 - 47.<br><br><a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fdrrak.github.io%2Fprywatne.sledzctwo%2F">html, javascript: 3dh</a> (gmail: 3dh.net)</i></div>
+</div>
+<p class="linia"></p><br>
+<p><strong>Zasady gry</strong></p>
+<p>Oto oddaję w Twoje ręce grę książkową. Co to oznacza? Otóż, przyjdzie Cidzielić na czas lektury podwójną rolę, bohatera i czytelnika zarazem. Opowieść, którądla Ciebie przygotowałem opowiesz sobie na różne sposoby, w zależności od podjętychw jej trakcie decyzji. Abyś w pełni zrozumiał, jak grać czytając zapoznaj się z poniższymi wytycznymi.</p>
+<p>Zasady nie są trudne, ich pojęcie z pewnością nie sprawi Ci żadnego problemu.<del>Na początku uzbrój się w kawałek kartki i coś do pisania, to jedyne „wymaganiasprzętowe” (prócz chwili wolnego czasu rzecz jasna)</del>. Całość podzielona jest naparagrafy. Jednak nie czytasz ich według kolejności numeracji! W każdym paragrafie znajdziesz jeden (lub kilka do wyboru) odnośnik do innych paragrafów. Podejmujesz decyzję, którą z dróg chcesz obrać i udajesz się do wskazanego numeru.</p>
+<p>Podczas lektury zdobywasz Tropy, Dowody oraz Informacje oznaczone numerami: #1, #2 itd. <del>Zapisuj je na kartce</del>, przydadzą Ci się podczas dalszej gry, bowiem dostęp do niektórych paragrafów zależny będzie od numeru posiadanych Informacji. Jednak nie musisz zebrać ich wszystkich, jest to zresztą niemożliwe, ponieważ niektóre z nich przypisane są do wzajemnie wykluczających się ścieżek fabularnych. W zależności od podjętych przez Ciebie decyzji, w pewnym momencie fabuły przyjdzie Ci z nich skorzystać, bądź też ukończysz grę w ogóle nie zwracając uwagi na to oznaczenie.</p>
+<p>Pamiętaj, żeby przy kolejnych przejściach gry zapisywać wszystko od nowa. Powodzenia!</p>
+<br><p class="linia"></p><br>
+<p><strong><em>Anglia, późne lato 1951 roku.</em></strong></p>
+<p>Minęło już cztery lata od zakończenia ostatnich działań na krwawym froncie Drugiej Wojny Światowej. Europa z wolna dźwiga się po nuklearnym chaosie poprzedzającym ostateczny upadek III Rzeszy. To trudny czas dla Anglii. Zarówno triumfalny Związek Radziecki, po aneksji Hiszpanii rozpościerający się od oceanu do oceanu, jaki i Stany Zjednoczone wciąż mają w pamięci, ich zdaniem, zdradziecki pakt z 1941. Cóż jednak można było zrobić? Zniszczone w heroicznej obronie wybrzeży lotnictwo i zdziesiątkowana marynarka nie mogły dłużej stawiać oporu faszystowskiej ofensywie. Proponowane przez Hitlera zawieszenie broni, a niedługo potem pakt o nieagresji było szansą na ocalenie, której zdruzgotany kraj nie mógł odrzucić.</p>
+<p>Dzięki temu Wielka Brytania ocaliła również swe cenne, afrykańskie kolonie. Zaawansowane prace przy stopniowym udoskonalaniu broni nuklearnej również zapewniają jej względne bezpieczeństwo na międzynarodowej arenie. Jednak przede wszystkim rosnący na sile konflikt między ZSRR a USA stanowi doskonała gwarancję na przyszłość. Anglia to cenny sojusznik, którego obie strony starają się za wszelką cenę pozyskać.</p>
+<p>I Ty masz swój skromny udział w wielkiej polityce Twojego kraju – bronisz go przed wewnętrznym wrogiem. Nazywasz się Charles Edward Ward i pracujesz jako urzędnik średniego szczebla w powołanym przed dziesięcioma laty Instytucie Porządku Publicznego. Dzięki Tobie i dziesiątkom tysięcy innych pracowników Wielka Brytania to obecnie naprawdę bezpieczny i spokojny kraj. Eliminując wszelkiej maści kryminalistów, degeneratów oraz inny szkodliwy element, pilnujecie zdrowia całego społeczeństwa. Instytut działa na wszystkich płaszczyznach, z równą bezwzględnością pozbywając się zatwardziałych recydywistów, jak i młodocianych przestępców. Oczywiście wielu was potępia, co rusz słychać głosy upartych moralistów, którzy mimo swego sprzeciwu skwapliwie korzystają z efektów waszej pracy. Oczyszczacie ten kraj, a przecież każdy kto opróżnia kubły z nieczystościami musi się przy tym ubrudzić...</p>
+<p>Dla Ciebie to naprawdę szczęśliwy czas. Nie dawno przekroczyłeś trzydziestkę, a masz już dobrze płatną posadę z szerokimi uprawnieniami, własne mieszkanie oraz kochającą żonę i śliczną córeczkę, która w tym roku skończy pięć lat. Poza tym robisz w życiu coś naprawdę wartościowego, z czego jesteś niezmiernie dumny. Maszerując dziarsko ulicami Londynu zbliżasz się do gmachu wybudowanego dla IPP, aby zacząć kolejny dzień swej służby dla Anglii i majestatu Jej Królewskiej Mości. Już koło południa bierzesz sobie wolne na resztę dnia oraz kilkudniowy urlop. Po powrocie do domu tłumaczysz żonie, że nagle musisz wyjechać. Rozumie to, nieraz miałeś już podobne, pilne wezwania. Niedługo jesteś już na dworcu i cierpliwie czekasz na pociąg. Przed oczyma wciąż masz treść listu, który przyszedł do Ciebie na adres Instytutu z Wigton, małego miasteczka, gdzie spędziłeś podczas tegorocznych wakacji trzy tygodnie na zorganizowanym przez Instytut „szkoleniu w terenie”. Mieszkałeś wówczas na stancji u pewnej szacownej kobiety. Wraz z nią mieszkała jej nastoletnia córka, Joan. Wakacyjny romans, który nawiązałeś zemścił się okrutnie. Z listu dowiedziałeś się, iż smarkula jest w drugim miesiącu ciąży. Mimo, iż podobno nikt jeszcze o tym nie wie jesteś pełen jak najgorszych przeczuć. Zamiast odpisać na list postanowiłeś pojawić się tam osobiście i jakoś załatwić tę sprawę. Docierasz na miejsce późnym popołudniem i od razu kierujesz się do domu Walkerów. Na miejscu z przerażeniem dostrzegasz zaplombowane przez IPP drzwi...</p>
+<div class="wn"><button class="b0" data-np="1">Przejdź do <span>paragrafu 1</span></button></div>
+</div>
+
+<div id="p1">
+<p class="pr">1</p>
+<p>Starsza, elegancko ubrana kobieta, którą przechodzi obok spogląda wymownie w stronę drzwi i tonem nie znoszącym sprzeciwu oznajmia:</p>
+<p><i>– Bardzo podejrzana sprawa. Wie pan coś na ten temat?</i></p>
+<p><i>- Niestety. Jestem tu przejazdem i wstąpiłem tylko się przywitać. Co się stało?</i></p>
+<p><i>– No cóż... Wczoraj wieczorem było dwóch panów z instytutu i zabrali Joan. Biedna Maria tak się tym wszystkim przejęła, że osłabła, mówię panu, blada jak ściana. Teraz dobrzeje w naszym szpitaliku. Ach... Nie wiem, jak ja bym się zachowała, gdyby to moje dziecko zabrał instytut. Nasza młodzież, nie uogólniając oczywiście, to banda anarchistów. Na szczęście tacy jak pan pilnują porządku w naszym biednym kraju.</i></p>
+<p><i>– Staram się.</i></p>
+<p><i>– O tak, o tak...</i></p>
+<p>Kobieta żegna Cię i odchodzi rzucając jeszcze smutne: <i>Biedna Maria....</i> Nie jest dobrze. Twoje sprawy zaczynają się poważnie komplikować, musisz jak najszybciej ustalić na jakiej podstawie zatrzymano dziewczynę. A może to wcale nie było zatrzymanie, w końcu, jakże urocza, sąsiadka Walkerów mogła się pomylić. A jeśli... Wahasz się przez moment czy dokończyć tę myśl, czując jak Twoim ciałem wstrząsa nieprzyjemny dreszcz. A co jeśli dziewczyna sama wezwała IPP? Mogłaby przecież oskarżyć Cię o gwałt, w ten sposób ratując po części reputację swoją i swojej rodziny. To bezsensu. Nie możesz z góry zakładać tak czarnego scenariusza. Powinieneś jak najszybciej zdobyć jakieś bardziej szczegółowe informacje, wypytując mieszkańców <button class="b0" data-np="23">miasteczka <span>(23)</span></button> bądź udać się bezpośrednio do szpitala i dyskretnie wypytać matkę <button class="b0" data-np="3">dziewczyny <span>(3)</span></button>.</p>
+</div>
+
+<div id="p2">
+<p class="pr">2</p>
+<p>Odjeżdżasz najbliższym autobusem do Carlisle szczęśliwy, że w końcu możesz opuścić to przeklęte miasteczko, w którym wszystko się zaczęło. Chociaż właściwie jedynym winowajcą w całej tej aferze jesteś Ty, mimo to wolisz „podzielić się” odpowiedzialnością zarówno z Joan jak i całym Wigton.</p>
+<p>Nie mija pół godziny, gdy wjeżdżasz na przedmieścia, ciesząc się swojskim widokiem dużego miasta. Wynajmujesz skromny pokoik w jednym z hoteli, rzecz jasna korzystając ze sporych ulg przysługującym wszystkim urzędnikom IPP. Niemal natychmiast dzwonisz do swojego starego przyjaciela, Marka Hugesa, również urzędnika średniego szczebla w Instytucie. Tłumacząc swoją obecność w mieście krótkim szkoleniem umawiasz się spotkanie na jutro około południa. Masz zamiar prosić go o pomoc w ustaleniu szczegółów związanych ze sprawą Walkerem.</p>
+<div id="h2a" style="text-align:center;margin:20px 0;">Jeśli nie posiadasz Informacji #1, przejdź teraz <button class="b0" data-np="28">do paragrafu <span>28</span></button>.</div>
+<div id="h2b" style="display:none;">
+<p>Chciałbyś odpocząć po pełnej napięć wizycie w Wigton, wiesz jednak, że tego wieczoru czeka Cię jeszcze jedno nieprzyjemne spotkanie. Masz nadzieję, że „interesy” o których wspominał podejrzany mężczyzna sprzed sklepu nie będą dla Ciebie zbyt kosztowne. Mimo to nie możesz pozwolić sobie na zignorowanie tego typa, zdecydowanie zbyt dużo wie. Dzięki pomocy portiera ustalasz gdzie znajduje się pub Srogi byk, jednak starszy mężczyzna ostrzega Cię, iż miejsce to nie cieszy się dobrą sławą w okolicy. Po chwili namysłu wkładasz do kieszeni marynarki swój rewolwer i zakładasz płaszcz. Ostrożności nigdy za wiele... Jesteś na miejscu punktualnie i czekasz przed wejściem na przybycie szantażysty z Wigton, jak ochrzciłeś w myślach nieznajomego. On również pojawia się o czasie i wskazuje zaułek niedaleko wejścia do pubu. Chcąc nie chcąc, ruszasz w wskazaną przez niego <button class="b0" data-np="34">stronę... <span>(34)</span></button></p>
+</div>
+</div>
+
+<div id="p3">
+<p class="pr">3</p>
+<p>Szpital mieści się w starym, zbudowanym w połowie dziewiętnastego wieku, dwupiętrowym gmachu. Gdy zaraz po przyjeździe pierwszy raz zwiedzałeś Wigton, ten budynek natychmiast przykuł Twoją uwagę. Zaciekawiła Cię jego historia oraz urokliwy wygląd, chociaż wiedziałeś, że placówce daleko do współczesnych standardów i w najbliższych latach niechybnie czeka ją gruntowana przebudowa. Teraz daleko Ci od zachwytu, z każdym krokiem czujesz jak ogarnia Cię coraz większe zdenerwowanie. Nie masz zamiaru zabawić w tym mieście dłużej niż to absolutnie konieczne.</p>
+<p>Tuż przed wejściem do wnętrza przystajesz na chwilę i próbujesz opanować zdenerwowanie. Nie wiesz gdzie leży pani Walker, więc będziesz musiał ustalić to na <button class="b0" data-np="4">własną rękę <span>(4)</span></button> lub zaciągnąć informacji <button class="b0" data-np="5">w recepcji <span>(5)</span></button>.</p> 
+</div>
+
+<div id="p4">
+<p class="pr">4</p>
+<p>Mijasz, może nawet nieco zbyt pośpiesznie, recepcję obrzucony beznamiętnym spojrzeniem pielęgniarki i bez przeszkód wchodzisz na teren oddziału. Masz nadzieję, że uda Ci się szybko odnaleźć panią Walker. O ile dobrze pamiętasz wszystkie poważniejsze przypadki z Wigton i okolicznych wsi odsyłane są bezpośrednio do Carlisle, więc spodziewasz się nie zastać tutaj zbyt wielu pacjentów. Na początek kierujesz się ku schodom prowadzącym na piętro, pragnąć jak najszybciej zniknąć z oczu recepcjonistce. Tam zaczepiasz napotkanego w korytarzu sanitariusza i pytasz:</p>
+<p><i>– Pan wybaczy, gdzie mogę znaleźć panią Marię Walker?</i></p>
+<p><i>– Pan z IPP? Drugie piętro, sala 204.</i></p>
+<p><i>– Dziękuję.</i></p>
+<p>Odprowadzasz młodego człowieka podejrzliwym spojrzeniem. Zna Cię? Nie, w mieście było też kilku innych uczestników szkolenia. Mało prawdopodobne, by zapamiętał właśnie Ciebie. W takim razie skąd ta sugestia? A może dziś ma przyjść ktoś z Instytutu? Musisz się pośpieszyć. Wchodzisz na drugie piętro i szybko orientujesz się, że cała ta afera, w której na własne życzenie uczestniczysz zaczyna wyglądać coraz <button class="b0" data-np="8">poważniej... <span>(8)</span></button></p>
+</div>
+
+<div id="p5">
+<p class="pr">5</p>
+<p>Uśmiechasz się do znudzonej pielęgniarki „w sile wieku” i oznajmiasz grzecznie:</p>
+<p><i>– Przepraszam bardzo, szukam sali gdzie leży Maria Walker. Przywieziono ją wczoraj wieczorem.</i></p>
+<p><i>– A tak. Była w szoku, zamknęli jej córkę. Całe miasto o tym gada.</i></p>
+<p><i>– Nie wie pani za co?</i></p>
+<p><i>– Nie wiem i nie interesuje mnie to, proszę pana. Ja mam tu odpowiedzialną prace i nie mam czasu na plotki i sensacje. Maria Walker leży, już patrzę... O! Sala 204, proszę się wpisać do tego zeszytu, taki jest wymóg. Ma pan pozwolenie?</i></p>
+<p><i>– Na co?</i></p>
+<p><i>– Na widzenie. Pacjentka jest pod opieką Instytutu, w ogóle kim pan jest? Rodzina?</i></p>
+<p><i>– Znajomy...</i></p> 
+<p>Nie chcesz przedłużać tej niezręcznej dla Ciebie rozmowy, więc składasz pośpiesznie podpis używając: <button class="b0" data-np="6">prawdziwego <span>(6)</span></button> / <button class="b0" data-np="7">fałszywego <span>(7)</span></button> nazwiska i odchodzisz, niemal czując na plecach wzrok podejrzliwej pielęgniarki.</p>
+</div>
+
+<div id="p6">
+<p class="pr">6</p>
+<p><b>(Trop 2)</b></p>
+<p>Szybko docierasz na drugie piętro, gdzie już po kilku chwilach orientujesz się, iż sprawa zatrzymania Twojej nieletniej kochanki jest znacznie poważniejsza, niż to <button class="b0" data-np="8">zakładałeś... <span>(8)</span></button></p>
+</div>
+
+<div id="p7">
+<p class="pr">7</p>
+<p><b>(Trop 1)</b></p>
+<p>Szybko docierasz na drugie piętro, gdzie już po kilku chwilach orientujesz się, iż sprawa zatrzymania Twojej nieletniej kochanki jest znacznie poważniejsza, niż to <button class="b0" data-np="8">zakładałeś... <span>(8)</span></button></p>
+</div>
+
+<div id="p8">
+<p class="pr">8</p>
+<p>Przed drzwiami do sali 204, na małym taborecie siedzi dosyć leciwy mężczyzna z charakterystyczną, żółtą przepaską na ramieniu. To Tymczasowy Pomocnik Instytutu, cholera! Zwykle wyznacza się ich jako rodzaj cywilnej ochrony powoływanej do pilnowania świadków danego zdarzenia przed przyjazdem policji bądź sił interwencyjnych IPP. Jego obecność tutaj świadczy dobitnie o tym, iż nie ma mowy o żadnej pomyłce, ani tym bardziej celowym działaniu Joan. W takim razie ta dziewczyna naprawdę jest zamieszana w coś poważnego, musisz za wszelką cenę porozmawiać z jej matką! Zastanawiasz się, czy Maria Walker zdaje sobie sprawę, iż jej pobyt w szpitalu oraz „ochrona” z Instytutu to praktycznie rzecz biorąc areszt...</p>
+<p>Aby dostać się do sali, gdzie leży kobieta, powinieneś spróbować odciągnąć uwagę, bądź w jakiś sposób oszukać, <button class="b0" data-np="10">„strażnika” <span>(10)</span></button>. Równie dobrze możesz po prostu wylegitymować się jako <button class="b0" data-np="9">urzędnik IPP <span>(9)</span></button>.</p>
+</div>
+
+<div id="p9">
+<p class="pr">9</p>
+<p><b>(Trop 1 + Trop 2)</b></p>
+<p>Mężczyzna dokładnie ogląda przedstawiony mu dokument i niemal masz pewność, iż próbuje zapamiętać twoje nazwisko.</p>
+<p><i>– Napatrzył się pan już?</i> – przerywasz zniecierpliwiony.</p>
+<p><i>– Och tak, najmocniej przepraszam. Proszę.</i></p>
+<p>Odsuwa się pośpiesznie na bok, robiąc Ci przejście. Chowasz swoją legitymację i otwierasz drzwi prowadzące do feralnej <button class="b0" data-np="11">sali 204. <span>(11)</span></button></p>
+</div>
+
+<div id="p10">
+<p class="pr">10</p>
+<p>Mimo wszystko wolisz zachować jak największą dyskrecję. Ostatnia rzeczą, której byś sobie teraz życzył jest wzbudzenie zainteresowania „góry” swoją osobą. Lepiej żeby nie wiedzieli, że węszysz wokół tej sprawy. Oczywiście w najgorszym wypadku mógłbyś wyjawić prawdę, dzięki czemu wywinąłbyś się z oskarżeń o utrudnianie śledztwa czy też nawet współudział w przestępstwie. Rzecz jasna nikt nie poinformowałby Twojej żony, jednak Ty miałbyś przez to ogromny dług wdzięczności i zamiast własną karierą musiałbyś zajmować się podrzędnymi sprawami jako czyjś „chłopiec na posyłki”. Stoisz na klatce schodowej, analizując dostępne możliwości. Mógłbyś zadziałać naprawdę zdecydowanie i przeszukać magazyny na niższym piętrze, aby zdobyć strój <button class="b0" data-np="12">sanitariusza <span>(12)</span></button>. Mniej ryzykowne wydaje się odwrócenie uwagi <button class="b0" data-np="13">strażnika <span>(13)</span></button>, nie masz jednak gwarancji, iż odniesiesz sukces. W ostateczności możesz dać za wygraną i po prostu się <button class="b0" data-np="9">wylegitymować <span>(9)</span></button>.</p>
+</div>
+
+<div id="p11">
+<p class="pr">11</p>
+<p>Kobieta wita Cię zdumionym, nieco podejrzliwym spojrzeniem. Jest zadbana jak na swój wiek, który najwyraźniej usilnie próbuje zatuszować. Nie chcesz zabawić tu zbyt długo, toteż postanawiasz jak najszybciej załatwić kłopotliwą sprawę. Witasz się z Marią Walker i po krótkiej wymianie zwyczajowych uprzejmości tłumaczysz:</p>
+<p><i>– Jestem w tej okolicy przejazdem, ale jak tylko usłyszałem, że trafiła pani do szpitala postanowiłem koniecznie zajść.</i></p> 
+<p><i>– To bardzo miło z pana strony</i> – stwierdza kobieta siląc się na uprzejmość. – <i>Na szczęście to nic poważnego, zwykłe zasłabnięcie.</i></p>
+<p>Najwyraźniej rozmówczyni nie zamierza poruszać tematu zatrzymania swojej córki. Być może podejrzewa nawet, że masz z tym coś wspólnego. A jeśli przez przypadek zauważyła jakieś dziwne zachowanie dziewczyny i odkryła prawdę?</p>
+<p><i>– Dobrze wiedzieć, w takim razie chyba niedługo panią wypuszczą?</i> – zagadujesz.</p>
+<p><i>– Pewnie wypuszczą...</i> – odpowiada kobieta, akcentując ostatnie słowo.</p>
+<p>Wiesz, że masz coraz mniej czasu, jednak mimo wszystko wolałbyś pierwszy nie zaczynać tematu IPP i Joan. Być może, jeśli jeszcze trochę <button class="b0" data-np="32">zaczekasz <span>(32)</span></button>, to kobieta sama zacznie mówić o córce. Z drugiej jednak strony lepiej, żeby nikt nie zastał Cię na rozmowie z panią Walker, więc zainicjowanie rozmowy o dziewczynie powinno nadejść jak najszybciej. Nawet jeśli to Ty miałbyś zacząć ten <button class="b0" data-np="31">niezręczny temat <span>(31)</span></button>.</p>
+</div>
+
+<div id="p12">
+<p class="pr">12</p>
+<p>Na pierwszym piętrze istotnie natrafiasz na składzik, a w nim znajdujesz nie tylko strój <button class="b0" data-np="16">sanitariusza <span>(16)</span></button>, ale i <button class="b0" data-np="17">lekarski fartuch <span>(17)</span></button>. Zastanawiasz się, który z nich wybrać. Myślisz też, iż mimo wszystko masz dziś odrobinę szczęścia. Podczas poszukiwań nie natrafiasz na nikogo, zupełniej jakby cała placówka była opuszczona. Podejrzewasz, że większość pacjentów leży na parterze, tam bowiem zaobserwowałeś dosyć spory ruch zanim wszedłeś na piętro w poszukiwaniu tej cholernej sali 204...</p>
+</div>
+
+<div id="p13">
+<p class="pr">13</p>
+<p>Wiesz, że musisz być ostrożny, a mimo wszystko musisz zrobić coś na tyle znaczącego, aby wywabić mężczyznę z jego posterunku. Przez głowę przechodzi Ci szalony pomysł. A gdybyś tak podpalił korkową tablicę ogłoszeń na pierwszym <button class="b0" data-np="14">piętrze <span>(14)</span></button>? To wprawdzie ryzykowne posunięcie, jednak jesteś naprawdę zdesperowany. Ostatecznie możesz spróbować starego, wypróbowanego sposobu i oznajmić mężczyźnie, że jest proszony do recepcji, aby odebrać <button class="b0" data-np="15">telefon <span>(15)</span></button>. Proste, ale czy skuteczne?</p>
+</div>
+
+<div id="p14">
+<p class="pr">14</p>
+<p><b>(Dowód 6)</b></p>
+<p>Docierasz niezauważony do tablicy ogłoszeń, czując jak z każdym krokiem tracisz entuzjazm dla tego pomysłu. Czy taki niemal szczeniacki wybryk faktycznie zadziała? Mimo poważnych wątpliwości wyciągasz z kieszenie pudełko zapałek i pośpiesznie podkładasz ogień pod kilka kartek, po czym jak najszybciej, lecz nie biegiem, wracasz z powrotem na klatkę schodową. Udało Ci się, na niemal opustoszałym piętrze pozostałeś niezauważony. Ale czy w takim razie ktoś zwróci uwagę na ogień? Odpowiedź przychodzi sama już po około minucie, gdy słyszysz rozgardiasz dochodzący z dołu. Ostrożnie wyglądasz zza winkla i z radością odkrywasz, iż mężczyzna opuścił swój posterunek. Pędzisz w stronę niestrzeżonej sali, musisz załatwić to jak najszybciej – masz naprawdę niewiele <button class="b0" data-np="11">czasu. <span>(11)</span></button></p>
+</div>
+
+<div id="p15">
+<p class="pr">15</p>
+<p>Podchodzisz do mężczyzny i oznajmiasz mu najspokojniej jak potrafisz:</p>
+<p><i>– Jest pan pilnie proszony do recepcji, telefon. Proszę o czasowe przekazanie mi obowiązków Tymczasowego Pomocnika Instytutu.</i></p>
+<p><i>– A... tak, proszę</i> – kompletnie zaskoczony rozmówca przekazuje Ci swoją opaskę i zbiega na dół.</p>
+<p>Odprowadzasz go badawczym spojrzeniem, po czym szybko wchodzisz do sali. Wiesz, że masz niewiele czasu, im szybciej załatwisz sprawę z matką Joan, <button class="b0" data-np="11">tym lepiej. <span>(11)</span></button></p>
+</div>
+
+<div id="p16">
+<p class="pr">16</p>
+<p>Mimo wszystko wolisz nie ryzykować z przebraniem lekarza, podejrzewasz, że w szpitalu takim jak ten wszyscy doktorzy są doskonale znani. Przebierasz się zatem za pielęgniarza i zabierasz pakiet nowych prześcieradeł. Oby ten fortel naprawdę wypalił, bowiem w przeciwnym przypadku z pewnością czekają Cię nieprzyjemności. Gdy zbliżasz się do stanowiska „ochroniarza”, ten obrzuca Cię ciekawskim wzrokiem, jednak nie reaguje, gdy spokojnie go mijasz i wskazując skinieniem głowy na trzymane w dłoniach prześcieradła, wchodzisz do <button class="b0" data-np="11">sali 204. <span>(11)</span></button></p>
+</div>
+
+<div id="p17">
+<p class="pr">17</p>
+<p><b>(Trop 1 + Trop 3)</b></p>
+<p>Przebrany za lekarza z pewnością uzyskasz dostęp do „ochranianej” sali. Z tą myślą ruszasz śmiało na drugie piętro. Już w pewnej odległości od siedzącego spokojnie mężczyzny kiwasz mu przyjaźnie głową. Ten nie odpowiada jednak tym samym i zatrzymuje Cię przed drzwiami, pytając podejrzliwie:</p>
+<p>– Zaraz, hola! Kim pan jest? Bo lekarzem na pewno nie.</p>
+<p>Milczysz, zdając sobie sprawę, iż nie łatwo Ci będzie wybrnąć z tej kłopotliwej sytuacji. W zasadzie jedyne co możesz teraz zrobić, to pokazać swoją legitymację z IPP i usprawiedliwić się sprawdzaniem czujności <button class="b0" data-np="18">mężczyzny <span>(18)</span></button>. Cóż innego możesz zrobić? Przecież go nie <button class="b0" data-np="19">zaatakujesz <span>(19)</span></button>, chociaż ostatecznie jest to pewne wyjście...</p>
+</div>
+
+<div id="p18">
+<p class="pr">18</p>
+<p><b>(Trop 3)</b></p>
+<p>Najnaturalniej jak potrafisz, odpowiadasz rzeczowym tonem:</p>
+<p><i>– Istotnie, proszę, oto moja legitymacja. Jestem urzędnikiem Instytutu, proszę wybaczyć mi tę maskaradę, ale w tym kwartale każdy musi wykonać podobną inspekcję. Z Walker wszystko w porządku?</i></p>
+<p><i>– Tak...</i> – odpowiada zaskoczony mężczyzna. <i>– Nikt do niej nie przychodził.</i></p>
+<p><i>– Doskonale, niech pan dalej trzyma wartę.</i></p>
+<p>Zabierasz swoją legitymację i spokojnie wchodzisz do sali, czując przy tym jak struga potu przebiega po Twoim <button class="b0" data-np="11">policzku. <span>(11)</span></button></p>
+</div>
+
+<div id="p19">
+<p class="pr">19</p>
+<p><b>(Trop 4)</b></p>
+<p>Celowałeś w szczękę, jednak pięść zatrzymała się na skroni. Powalasz zaskoczonego mężczyznę jednym ciosem. Czujesz pulsujący ból w kostkach, z przerażeniem spoglądając na pozbawionego przytomności nieszczęśnika. Ogarnia Cię panika, chcesz jak najszybciej stąd <button class="b0" data-np="20">uciec <span>(20)</span></button>. Rozpaczliwie próbujesz zachować zimną krew, zdajesz sobie sprawę z tego, iż powinieneś teraz porozmawiać z <button class="b0" data-np="21">Marią Walker <span>(21)</span></button>.</p>
+</div>
+
+<div id="p20">
+<p class="pr">20</p>
+<p>Schodzisz spokojnie na pierwsze piętro, potem parter... Na razie jest dobrze, musisz tylko zachować spokój. Mijasz właśnie kolejną salę, z której dobiega nagle czyjś głośny śmiech. Panikujesz. Ruszasz biegiem w stronę recepcji, przeskakujesz gładko nad wiatrem z wodą, a raczej zamierzałeś to zrobić. Twoją niezdarną próbę zakończył bolesny upadek. Chyba nabiłeś sobie sporego guza. Zrywasz się z podłogi i natychmiast czujesz silny zawrót głowy, opierasz się o ścianę, aby po chwili bezwładnie opaść na posadzkę. Straciłeś <button class="b0" data-np="29">przytomność. <span>(29)</span></button></p>
+</div>
+
+<div id="p21">
+<p class="pr">21</p>
+<p><b>(Trop 4)</b></p>
+<p>Kobieta, wyraźnie zdziwiona, wita Cię niepewnym Dzień dobry. Mimo szpitalnej koszuli i nieco zmierzwionych włosów prezentuje się całkiem nieźle, pewnie sporo wysiłku wkłada w walce z nieubłaganym upływem czasu. Pośpiesznie tłumaczysz się ze swojego „najazdu”, mówiąc:</p>
+<p><i>– Jestem w tej okolicy przejazdem, ale jak tylko usłyszałem, że trafiła pani do szpitala postanowiłem koniecznie zajść.</i></p> 
+<p><i>– To bardzo miło z pana strony</i> – stwierdza kobieta siląc się na uprzejmość. – <i>Na szczęście to nic poważnego, zwykłe zasłabnięcie.</i></p>
+<p>Najwyraźniej rozmówczyni nie zamierza poruszać tematu zatrzymania swojej córki. Być może podejrzewa nawet, że masz z tym coś wspólnego. A jeśli przez przypadek zauważyła jakieś dziwne zachowanie dziewczyny i odkryła prawdę?</p>
+<p><i>– Dobrze wiedzieć, w takim razie chyba niedługo panią wypuszczą?</i> – zagadujesz.</p>
+<p><i>– Pewnie wypuszczą...</i> – odpowiada kobieta, akcentując ostatnie słowo.</p>
+<p><i>– Proszę wybaczyć moją dociekliwości, ale doszły mnie słuchy dotyczące...</i></p>
+<p><i>– Joan. Wieści już się rozeszły, co?</i></p>
+<p><i>– To małe miasto...</i></p>
+<p><i>– Zadupie</i> – syczy wściekle kobieta. – <i>To przez mojego byłego męża, Dereka, jak się dowiedziałam wczoraj zajmuje się handlowaniem bronią w Carlisle, gdzie go aresztowano. Podobno Joan często kontaktowała się z nim bez mojej wiedzy. Nie wiem, może przypadkiem wyciągał od niej jakieś informacji. Dobry Boże, nie wiem, nie wiem...</i></p>
+<p>Widzisz, że kobieta jest całkowicie rozbita, nic tu po Tobie. Życzysz jej szybkiego powrotu do zdrowia i pośpiesznie opuszczasz <button class="b0" data-np="22">salę. <span>(22)</span></button></p>
+</div>
+
+<div id="p22">
+<p class="pr">22</p>
+<p>Na korytarzu spoglądasz przerażony na, wciąż leżącego nieruchomo na posadzce, mężczyznę. Ostrożnie wyciągasz ze swojej kieszeni lusterko i drżącymi rękoma przystawiasz je do ust nieszczęśnika. Szkło pokrywa się parą, a więc żyje. Wzdychasz Ciężko, po czym ruszasz w stronę schodów. Trzymając nerwy na postronku, schodzisz spokojnie na parter, mijasz bez słowa recepcje, po czym opuszczasz <button class="b0" data-np="2">budynek... <span>(2)</span></button></p>
+</div>
+
+<div id="p23">
+<p class="pr">23</p> 
+<p>Nie chcesz tracić cennego czasu na wypytywanie przechodniów, to zresztą wyglądałoby podejrzanie. Oficjalnie jesteś tu przecież tylko przejazdem. W takich mieścinach najwięcej informacji można uzyskać <button class="b0" data-np="26">w kiosku <span>(26)</span></button>. Najlepiej będzie, jeśli przejdziesz się po okolicy w poszukiwaniu jednego z nich i podczas kupowania jakiejś bzdury spytasz o sprawę Walkerów. Jeśli nie uzyskasz żadnych cennych informacji zawsze będziesz mógł odwiedzić miejscowy komisariat <button class="b0" data-np="25">policji <span>(25)</span></button>, albo dać za wygraną i iść <button class="b0" data-np="3">do szpitala <span>(3)</span></button>.</p>
+</div>
+
+<div id="p24">
+<p class="pr">24</p>
+<p>Wchodząc do sklepu zderzasz się w drzwiach z niechlujnie ubranym mężczyzną, który wrzeszczy dziko:</p>
+<p><i>– Rozbój! Patrz jak chodzisz baranie!</i></p>
+<p>Wyczuwasz wyraźny zapach spirytusu, jednak nie dajesz tego po sobie poznać i uprzejmie przepraszasz nieznajomego, kierując się w stronę lady. Niestety, najwyraźniej intruz nie ma zamiaru odpuścić. Nie zwracasz uwagi na zaczepki pijanego mężczyzny, co najwyraźniej jeszcze bardziej go złości. Próbujesz właśnie coś kupić, jednak krzyki intruza zagłuszają to, co mówisz. W tym momencie sklepikarz traci cierpliwość i wrzeszczy:</p>
+<p><i>– Gordon! Wynoś się albo wezwę policję! Znów chcesz spędzić noc w celi?</i></p>
+<p>Mrucząc coś pod nosem, pijaczek ulatnia się zostawiając Was samych w sklepie. Spokojnie kupujesz kilka bułek, po czym zagadujesz:</p>
+<p><i>– Wie pan coś o aresztowaniu przez IPP tej dziewczyny?</i></p>
+<p><i>– Jakiej? A tak... Faktycznie, niedawno zabrali Joan. Niech pan nie wierzy plotkom. Myślę, że tylko chcieli z nią porozmawiać, coś ustalić. Znał ją pan?</i></p>
+<p><i>– Poniekąd, raczej tylko z widzenia.</i></p>
+<p><i>– Ach tak...</i></p>
+<p>Wolisz nie wdawać się w dyskusje o sobie, a na to najwyraźniej się zanosi. Żegnasz się i wychodzisz ze sklepu. Chciałbyś wierzyć w to, co powiedział sklepikarz, jesteś jednak pełen jak najgorszych obaw. W tej chwili dostrzegasz opartego o ścianę sklepu pijaczka, nachodzi Cię pewna myśl. A gdybyś to jego spytał o sprawę zatrzymania dziewczyny? <button class="b0" data-np="27"><span>(27)</span> Tacy ludzie</button> zwykle dużo wiedzą o tym, co dzieje się w okolicy. Z drugiej strony na pewno prędzej czy później zacząłby rozpowiadać wszystkim dookoła o przyjezdnym, który wypytywał go o te sprawy. Wolałbyś nie zostawiać za sobą żadnych śladów, chyba że będzie to naprawdę konieczne. Ostatecznie możesz udać się na <button class="b0" data-np="25">komisariat policji <span>(25)</span></button>. Myślisz też o skończeniu z wypytywaniem mieszkańców i odwiedzeniem <button class="b0" data-np="3">szpitala <span>(3)</span></button>.</p>
+</div>
+
+<div id="p25">
+<p class="pr">25</p>
+<p><b>(Dowód 5)</b></p>
+<p>Szybko uzmysławiasz sobie, że wizyta na komisariacie była błędem. Nie tylko nie uzyskujesz żadnych informacji, ale „poproszony” zostajesz o podanie swojego nazwiska. Okazuje się, że IPP „zaleciło” miejscowej policji spisywanie personaliów każdego, kto okazywałby zbytnie zainteresowanie okolicznościami zatrzymania Joan Walker. Na wszelki wypadek wolisz nie pokazywać swojej legitymacji służbowej, lecz tylko dowód osobisty. Lepiej figurować w tych zapiskach jako ciekawski turysta, niż członek Instytutu, który węszy w jego wewnętrznych <button class="b0" data-np="3">sprawach... <span>(3)</span></button></p>
+</div>
+
+<div id="p26">
+<p class="pr">26</p>
+<p>Pozdrawiasz kioskarza przyjaznym skinieniem głowy i kupujesz paczkę zapałek, żartując przy tym:</p>
+<p><i>– Sporo się u was ostatnio dzieje.</i></p>
+<p><i>– Tutaj, w Wigton? Nie sądzę.</i></p>
+<p><i>– Mam na myśli zatrzymanie tej młodej dziewczyny przez IPP.</i></p>
+<p>Mężczyzna przygląda Ci się podejrzliwie, po czym oświadcza:</p>
+<p><i>– Coś przeskrobała, to ją zamknęli, pan wie jacy są młodzi. Zresztą nie interesowałem się tym zbytnio, plotkowanie to babska rzecz.</i></p>
+<p>Rzucasz od niechcenia „miłego dnia” i odchodzisz niezadowolony. Niestety, tu nie dowiesz się niczego interesującego. Być może któryś ze <button class="b0" data-np="24">sklepikarzy <span>(24)</span></button> będzie bardziej skłonny do rozmów. Na razie wołałbyś uniknąć wizyty <button class="b0" data-np="25">w komisariacie <span>(25)</span></button>, chociaż prawdopodobnie Twoje obawy są zbyt pochopne. W każdym razie musisz spróbować uzyskać gdzieś informacje, w przeciwnym razie nie pozostanie Ci nic innego jak powrót <button class="b0" data-np="3">do szpitala <span>(3)</span></button>.</p>
+</div>
+
+<div id="p27">
+<p class="pr">27</p>
+<p><b>(Informacja #1)</b></p>
+<p>Mężczyzna wygląda na mocno podenerwowanego, gdy podchodzisz do niego i przyjaźnie kiwasz głową.</p>
+<p><i>– Czego chcesz?</i> – rzuca oschle.</p>
+<p>Orientujesz się, że jest znacznie trzeźwiejszy, niż przypuszczałeś.</p>
+<p><i>– Informacji.</i></p>
+<p>Rozmówca przygląda ci się przez dłuższą chwilę, gdy nagle jego twarz opromienia szeroki uśmiech. Klepie Cię przyjacielsko po ramieniu i poufałym tonem oświadcza:</p>
+<p><i>– Pamiętam cię... Już w drzwiach czuję jakbyśmy się znali... Byłeś tu w lecie na szkoleniu tego waszego choler... Instytutu.</i></p>
+<p><i>– Tak</i> – odpowiadasz poirytowany.</p>
+<p><i>– Wcześniej stara Walker zawsze rzucała mi parę centów na piwko, ale jak tylko przyjechałeś to od razu zrobiła się święta, nawet nie mogłem się tam zbliżyć. I wiesz co facet? Czasem przychodziłem. To ja wywalałem te śmietniki nie żadne koty. Ojjj pamiętam jak ostro się zabawiłeś z tą małą turkaweczką, piszczała z rozkoszy jak palony szczur... Byłem wtedy w komórce pod schodami, uszczuplałem zapasy starej Walker, durna baba od lat właśnie tam trzyma jakieś sikacze dla mniej ważnych gości.</i></p>
+<p><i>– Ty...</i></p>
+<p><i>– Nie kończ, bo możesz tego żałować przyjacielu! Nikt o tym nie wie, tylko ty i ja. Dziś o dziewiątej wieczór będę w Carlisle, jest tam taki pub, Srogi byk, dobre miejsce, każdy Ci je wskaże. Tam się spotkamy. I pogadamy o interesach.</i></p>
+<p>Mężczyzna oddala się pośpiesznym krokiem, a Ty stoisz osłupiały, czując jak ogarnia Cię rozpacz. Tracisz ochotę na dalsze przepytywanie ludzi, chcesz jak najszybciej iść <button class="b0" data-np="3">do szpitala <span>(3)</span></button> i zobaczyć się z matką Joan, a potem jak najszybciej opuścić to cholerne miasteczko.</p>
+</div>
+
+<div id="p28">
+<p class="pr">28</p>
+<p>Wasze spotkanie przebiega dość stereotypowo. Po krótkiej wymianie uprzejmości zaczynacie rozmowę o pracy, a przynajmniej tych jej elementach, o których możecie otwarcie mówić. Masz wrażenie, iż cała wasza rozmowa jest na swój sposób sztuczna. Najwidoczniej długa rozłąka osłabiła Wasze wzajemne relacje. W końcu, niezbyt zręcznie, kierujesz rozmowę na nowe tory pytając:</p>
+<p><i>– Słyszałeś coś o sprawie Dereka Walkera?</i></p>
+<p><i>– Dlaczego pytasz?</i></p>
+<p>Wahasz się, czy powiedzieć <button class="b0" data-np="30">prawdę <span>(30)</span></button>. Lata w pracy w Instytucie wpłynęły na Ciebie do tego stopnia, iż Twoją pierwszą, naturalną, reakcją jest chęć zatuszowania prawdziwych <button class="b0" data-np="33">intencji <span>(33)</span></button>. Ostatecznie Mark jest przecież Twoim przyjacielem, chociaż z drugiej strony tak dawno go nie widziałeś...</p>
+</div>
+
+<div id="p29">
+<p class="pr">29</p>
+<p>Gdy powoli dochodzisz do siebie, dostrzegasz policjanta, którego najwyraźniej ktoś wezwał do szpitala. W rękach ma twoje dokumenty. Nie wiesz, czy sam mu je podałeś po odzyskaniu świadomości, czy też po prostu Cię przeszukał. Udzielasz jakiś nieskładnych wyjaśnień, czując, jak dotkliwy ból głowy odbiera Ci zdolność racjonalnego myślenia. Oficer decyduje się powiadomić IPP żeby zajęli się swoim człowiekiem. Niestety, najwyraźniej nie uda Ci się uniknąć konfrontacji z przełożonymi...</p>
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p30">
+<p class="pr">30</p>
+<p>Gdy wyjawiasz prawdziwy powód swoich poszukiwań, widzisz, jak mężczyzna pochmurnieje i stwierdza ponuro:</p>
+<p><i>– Nigdy bym nie pomyślał, że to akurat ty miałbyś taki... Problem. Nie szkoda ci rodziny?</i></p>
+<p><i>– Doskonale wiem co zrobiłem i jakim gnojem okazałem się w stosunku do żony i tej dziewczyny. Nie potrzebuję kazania tylko pomocy. Mogę na nią liczyć?</i></p>
+<p><i>– Tak... Oczywiście. Nie wiem tylko czy dziś uda mi się cokolwiek załatwić, nie chciałbym wzbudzać niepotrzebnych podejrzeń, a tobie tym bardziej zależy na dyskrecji.</i></p>
+<p><i>– Rozumiem.</i></p>
+<p><i>– Spotkajmy się wieczorem, wtedy powiem ci, co ustaliłem.</i></p>
+<p><i>– Doskonale.</i></p>
+<p>Podajesz rozmówcy adres hotelu, w którym się zatrzymałeś i dziękujesz za pomoc. Rozmawiacie jeszcze przez trochę, jednak atmosfera wyraźnie uległa pogorszeniu. Żegnasz się z przyjacielem, z trudem kryjąc emocje. Zrozpaczony postanawiasz urządzić sobie dłuższy spacer i przemyśleć kilka spraw. Teraz wszystko zależy od tego, co zdoła ustalić Mark. Teraz to Twoja ostatnia deska <button class="b0" data-np="35">ratunku <span>(35)</span></button>.</p>
+</div>
+
+<div id="p31">
+<p class="pr">31</p>
+<p><i>– Proszę wybaczyć moją dociekliwości, ale doszły mnie słuchy dotyczące...</i></p>
+<p><i>– Joan. Wieści już się rozeszły, co?</i></p>
+<p><i>– To małe miasto...</i></p> 
+<p><i>– Zadupie</i> – syczy wściekle kobieta. <i>– To przez mojego byłego męża, Dereka. Jak się dowiedziałam wczoraj, zajmuje się handlowaniem bronią w Carlisle, gdzie go aresztowano. Podobno Joan często kontaktowała się z nim bez mojej wiedzy. Nie wiem, może przypadkiem wyciągał od niej jakieś informacji. Dobry Boże, nie wiem, nie wiem... </i></p>
+<p>Widzisz, że kobieta jest całkowicie rozbita, nic tu po Tobie. Życzysz jej szybkiego powrotu do zdrowia i pośpiesznie opuszczasz salę, a następnie szpital. Na zewnątrz bierzesz głęboki oddech, czując jak nerwowo drżą Ci ręce. Nic więcej tutaj nie <button class="b0" data-np="2">ustalisz <span>(2)</span></button>.</p>
+</div>
+
+<div id="p32">
+<p class="pr">32</p>
+<p>Cierpliwie pozwalasz kobiecie wylać przed sobą wszystkie swoje żale. W trakcie istnego słowotoku rozhisteryzowanej rozmówczyni wyłapujesz kilka interesujących Cię szczegółów. Zatrzymanie Joan ma związek z niedawnym aresztowaniem jej ojca oskarżonego o nielegalny handel bronią w Carlisle. Być może mężczyzna wyciągał od niej jakieś istotne informacje, tego nie jesteś w stanie ustalić. Czując, iż i tak zbyt długo przebywasz w tym miejscu, grzecznie ucinasz rozmowę i odchodzisz, życząc dużo zdrowia nieszczęsnej matce, a teraz również niczego nie świadomej babce.</p>
+<p>Na zewnątrz trafiasz na zaskoczonego „strażnika”, któremu legitymujesz się jako urzędnik IPP. Mężczyzna uważnie ogląda Twoje dokumenty, jednak po chwili oddaje je bez słowa. Opuszczasz szpital, z trudem utrzymując nerwy na postronku. Nareszcie będziesz mógł opuścić to miasteczku. W Wigton niczego więcej się nie <button class="b0" data-np="2">dowiesz... <span>(2)</span></button></p>
+</div>
+
+<div id="p33">
+<p class="pr">33</p>
+<p><i>– Jestem tu na małym szkoleniu i ktoś wspomniał o tej sprawie. Ponoć to coś grubszego.</i></p>
+<p><i>– Derek Walker mówisz... Hmm... Nie przypominam sobie żebym coś o tym słyszał albo nie kojarzę tylko nazwiska. Chociaż w sumie żadnej afery z nielegalnym handlem bronią ostatnio nie było.</i></p>
+<p><i>– W takim razie pewnie coś źle zapamiętałem.</i></p>
+<p><i>– Wiesz, równie dobrze sprawa może być zupełnie świeża i jeszcze nie jest o niej głośno. Popytam się ludzi.</i></p>
+<p><i>– Byłbym wdzięczny, zaciekawiła mnie ta afera.</i></p>
+<p><i>– Jeśli faktycznie coś jest na rzeczy, to faktycznie lepiej być z tym na bieżąco. W naszym fachu każda informacja jest cenna.</i></p>
+<p>Mimowolnie wybuchasz śmiechem, jednak szybko tracisz ten dobry nastrój, pamiętając o prawdziwym powodzie swoich pytań. Stosunkowo szybko kończysz rozmowę, wymawiając się natłokiem zajęć. Rozmówca doskonale Cię rozumie i ustalacie, że jutro rano Mark wpadnie do hotelu, w którym wynająłeś pokój i pogadacie dłużej. Z ulgą spoglądasz na oddalającego się przyjaciela, dziś nie jesteś w nastroju do pogaduszek. Masz zamiar jak najszybciej wrócić do swojego pokoju i po prostu się <button class="b0" data-np="36">położyć... <span>(36)</span></button></p>
+</div>
+
+<div id="p34">
+<p class="pr">34</p>
+<p>Gdy stoicie już w cieniu rzucanym przez budynki, mężczyzna wyciąga z kieszenie kartkę i wręcza Ci ją ze słowami:</p>
+<p><i>– Tyle chcę za trzymanie gęby na kłódkę. Mogę ci podpisać różne obciążające mnie papiery czy co tam chcesz, taka gwarancja, że będę siedział cicho.</i></p>
+<p>Spoglądasz na kwotę nabazgraną na wyrwanej z notesu stronie. Dużo. Za to można kupić jakiś używany samochód albo wypić morze alkoholu. Warunki wydają Ci się uczciwe, o ile można mówić o uczciwości, gdy w grę wchodzi szantaż. Właściwie mógłbyś je <button class="b0" data-np="45">przyjąć <span>(45)</span></button>, zapewniając sobie chwilowy spokój. I tak masz już wystarczająco dużo problemów, nie potrzeba Ci nowych. Zresztą możesz spróbować przekonać mężczyznę, że o wiele mniej podejrzana będzie płatność w ratach. Wtedy mógłbyś jakoś wykręcić się od płacenia całości, zresztą szantażysta prawdopodobnie wie, że nie udałoby mu się wyłudzić pełnej sumy. Pewnie liczy na jednorazowy zastrzyk gotówki, bez względu jaka to będzie kwota. Są to jednak tylko Twoje przypuszczenia, które niekoniecznie muszą być prawdziwe.</p>
+<p>Czujesz jak ogarnia Cię gniew, właściwie równie dobrze możesz spróbować zastraszyć jakoś tego <button class="b0" data-np="46">śmiecia! <span>(46)</span></button></p>
+</div>
+
+<div id="p35">
+<p class="pr">35</p>
+<p>Z niecierpliwością czekasz na wieczorne spotkanie, zastanawiając się nad tym ile zdoła ustalić Twój przyjaciel. Gdy w końcu rozlega się stanowcze pukanie do drzwi Twojego pokoju, czujesz szybsze bicie serca. Śpiesznie otwierasz i pochmurniejesz. Widząc wyraz twarzy swojego gościa, obawiasz się, że niczego nie zdołał załatwić. Siadacie przy stole i przez moment panuje niezręczna cisza, którą jako pierwszy przerywa Twój gość, mówiąc:</p>
+<p><i>– To grubsza sprawa. Jej ojca aresztowano trzy dni temu w jego mieszkaniu. Zatrzymania dokonała policja we współpracy z Instytutem. Wiesz, jedna z tych akcji poprawiających nasz wizerunek.</i></p>
+<p><i>– Rozumiem, dowód na to, że nie dążymy do monopolu.</i></p> 
+<p><i>– Dokładnie. W każdym razie to nie była standardowa operacja zdjęcia handlarza. Zginęło w niej aż czterech policjantów i jeden z naszych. Zdjęto całą szajkę, pięciu zastrzelonych, trzech aresztowanym, w tym Derek Walker.</i></p>
+<p><i>– Prawdziwa masakra.</i></p>
+<p><i>– Tak, ale w oficjalnych raportach są tylko dane dotyczące aresztowania Walkera.</i></p>
+<p><i>– Dlaczego? A co ma wspólnego z tym wszystkim Joan?</i></p>
+<p><i>– Nic więcej nie ustaliłem, a i tak tego wszystkiego dowiedziałem się nieoficjalnie. Jeśli chcesz iść dalej tym tropem musisz zacząć działać oficjalnie.</i></p>
+<p><i>– Czyli wyznać, że prowadziłem prywatne dochodzenie oraz podać jego powody.</i></p>
+<p><i>– Tak to widzę. Zaangażuj się w to na poważnie albo wracaj do siebie i udawaj, że o niczym nie wiesz.</i></p>
+<p>Ponownie zapada cisza, tym razem na znacznie dłużej. Nagle Twój rozmówca wstaje i klepie Cię przyjacielsko w ramię, kierując się w stronę wyjścia. Nie próbujesz go zatrzymać, bez słowa patrząc, jak opuszcza Twój pokój. Jesteś mu wdzięczny za zdobyte informacje oraz taktowne wyjście w momencie, gdy potrzebujesz być sam. Chcesz poważnie przemyśleć sprawę powrotu do Londynu. Mark ma rację, musisz zdecydować o tym, czy wrócić od Londynu i zapomnieć o całej <button class="b0" data-np="37">sprawie <span>(37)</span></button>, czy też <button class="b0" data-np="38">zaangażować się <span>(38)</span></button> i ustalić co dzieje się z Joan.</p>
+</div>
+
+<div id="p36">
+<p class="pr">36</p>
+<p>Późnym wieczorem energiczne pukanie do drzwi Twojego pokoju niechybnie zwiastuje, iż prawdopodobnie Mark ustalił coś na tyle ważnego, aby nie czekać z tym do rana. Zrywasz się z łóżka i pośpiesznie odryglowujesz zamek. Na progu nie czeka jednak Twój przyjaciel, lecz dwóch nieznajomych mężczyzn. Jedne z nich legitymuje się jako inspektor wewnętrzny IPP i wręcza Ci nakaz natychmiastowego stawienia się w głównym urzędzie Instytutu w Carlisle. Nie masz szans na ucieczkę, jedyne co możesz zrobić to zaprosić nieznajomych wysłanników do środka, a raczej cofnąć się, robiąc dla nich przejście. Zaczynasz nerwowo przebierać się w wyjściowe ubranie, podejrzewasz, że to będzie długa, nieprzyjemna noc...</p> 
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p37">
+<p class="pr">37</p>
+<p>Kręcisz się bez celu po peronie, próbując zabić jakoś czas pozostały do przyjazdu pociągu. Myślisz o schowanym w kieszeni płaszcza rewolwerze, głupi nawyk, z którym niemal całkowicie uporałeś się po przejściu do pracy w biurze. Jesteś przybity całą sytuacją, ostatecznie Twój przyjazd tutaj nie przyniósł niemal żadnych rezultatów, jedynie pogorszyłeś swoje wyjściowe położenie. Jeśli zarzuty wobec Joan zostaną potwierdzone pozostanie Ci tylko mieć nadzieję, iż zrozpaczona dziewczyna nie wplącze Cię w całą tę aferę. Nie masz pewności, czy Instytut wie o ciąży nastolatki. Kto wie, być może wobec ciężarnej zastosowane zostaną mniej restrykcyjne procedury? Zresztą nie zapadł jeszcze żaden wyrok, równie dobrze ta biedaczka może okazać się niewinna...</p>
+<p><i>– Pan Ward?</i> – bardziej stwierdza fakt, niż pyta ktoś za Twoimi plecami.</p>
+<p>Obracasz się i dostrzegasz dwóch mężczyzn, jeden z nich legitymuje się jako inspektor wewnętrzny Instytutu, po czym pyta:</p>
+<p><i>– Pójdzie pan z nami? Jest kilka spraw, które powinien pan wyjaśnić w głównym urzędzie Instytutu tutaj, w Carlisle. Na razie nie ma potrzeby informować centralę w Londynie, nie uważa pan?</i></p>
+<p>Czujesz jak oblewa Cię pot. Masz ochotę uciec stąd <button class="b0" data-np="40">jak najszybciej <span>(40)</span></button>, ale nie jesteś pewien, czy to dobry pomysł. Powinieneś iść za <button class="b0" data-np="39">tymi ludźmi <span>(39)</span></button> żeby ustalić, czy jesteś o coś oskarżony. A co jeśli tak? Teraz masz jeszcze szanse uciec. Tylko dokąd? Istne szaleństwo...</p>
+</div>
+
+<div id="p38">
+<p class="pr">38</p>
+<p><b>(Informacja #2)</b></p>
+<p>Chciałeś zachować w wszystko sekrecie, jednak najwyraźniej nie unikniesz rozmowy z kimś z Instytutu. Trudno, lepiej żeby wiedzieli dlaczego naprawdę interesujesz się tą sprawą, niż mieliby wysnuć jakieś własne wnioski. W końcu można powiedzieć, że popełniłeś jedynie swego rodzaju przestępstwo moralne, a za to, póki co Instytut nikogo nie karze. Natomiast utrudnianie śledztwa to już zupełnie inna sprawa. Masz tylko nadzieję, że nikomu nie wpadnie do głowy oskarżać Cię o coś takiego. Mimo wszystko nie jesteś przecież pierwszym lepszym „grzesznym” obywatelem, lecz członkiem IPP. Liczysz więc na pewną, nawet najdrobniejszą, wyrozumiałość...</p>
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p39">
+<p class="pr">39</p>
+<p><b>(Informacja #2)</b></p>
+<p>Wolisz nie robić sobie dodatkowych problemów. Masz tylko nadzieję, że po wyjaśnieniu wszystkiego, nie zostaniesz pociągnięty do odpowiedzialności. W końcu tylko poszukiwałeś informacji. Mimo to czujesz pewien niepokój oraz, a może przede wszystkim, zażenowanie. Twój nieszczęsny romans, a raczej wyskok, przestał być sprawą prywatną i przeniósł się na pole służbowe. Oby tylko przez tę aferę nie ucierpiało Twoje życie rodzinne, o karierze nie wspominając...</p>
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p40">
+<p class="pr">40</p>
+<p>Popychasz mężczyznę, tak iż spada na peron wprost pod nogi swego towarzysza. Ruszasz pędem przed siebie, czując szaleńcze bicie serca. Po chwili jesteś już poza dworcem i wpadasz między budynki mieszkalne. Pędzisz jedną z bocznych uliczek, słysząc okrzyki ścigających Cię funkcjonariuszy. Nagle wyraźny odgłos wystrzału sprawia, iż omal nie tracisz równowagi i cudem unikasz zderzenia z blaszanym śmietnikiem. Wierz, że prawdopodobnie był to tylko strzał ostrzegawczy, jednak jego użycie wyraźnie świadczy o intencjach napastników, nie odpuszczą. W tym momencie masz jeszcze szansę, możesz się <button class="b0" data-np="41">poddać <span>(41)</span></button>. Za minutę, może dwie, w Twoją stronę polecą kule i nie będzie już odwrotu... <button class="b0" data-np="42">Uciekasz? <span>(42)</span></button></p>
+</div>
+
+<div id="p41">
+<p class="pr">41</p>
+<p>Zatrzymujesz się i podnosisz ręce do góry, wołając:</p>
+<p><i>– Poddaje się! W kieszeni mam rewolwer, mam go wyjąć?</i></p>
+<p>Ścigający Cię mężczyźni dobiegają na odległość trzech metrów i celując w Twoją pierś, jeden z nich rzuca szorstko:</p>
+<p><i>– Wyciągnij broń i połóż na ziemi, potem pod ścianę!</i></p>
+<p>Posłusznie spełniasz „prośbę”, słysząc przy tym wypowiedziane o wiele łagodniejszym tonem:</p>
+<p><i>– Chodziło tylko o parę ustaleń, a teraz naprawdę narobiłeś sobie kłopotów człowieku...</i></p>
+<p>Chcesz coś powiedzieć, ale ostatecznie dajesz za wygraną. Teraz rozwój wypadków nie zależy od Ciebie, jesteś zatrzymany do dyspozycji IPP...</p>
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p42">
+<p class="pr">42</p>
+<p>Wpadasz w kolejny zaułek z przeświadczeniem, że nie dasz rady im zbiec. Mają świetną kondycję, a Ty już dawno nie miałeś okazji poważnie popracować w terenie. Musisz <button class="b0" data-np="44">poddać się <span>(44)</span></button> albo podjąć <button class="b0" data-np="43">walkę <span>(43)</span></button>. Myślisz o schowanym w kieszeni rewolwerze...</p>
+</div>
+
+<div id="p43">
+<p class="pr">43</p>
+<p>Wyjmujesz broń dokładnie w momencie, gdy wypadasz na główną ulicę. Kilka metrów dalej dostrzegasz patrolującego ten obszar policjanta. Nie masz już czasu na zmianę decyzji. Pociągasz gwałtownie za spust. Nie odbezpieczyłeś broni! Mężczyzna w tym czasie sięga do kabury, Ty odciągasz kurek. Strzelacie. Policjant zatacza się i upada. Dostał w pierś. Próbujesz uciekać, przewracasz się powalony potwornym bólem. Dostałeś w płuco, zaczynasz się topić we własnej krwi. Zewsząd dochodzą Cię krzyki przerażonych ludzi. Piękny spektakl... temat do rozmów na najbliższe tygodnie... – dziwne, że w takim momencie nachodzi Cię tak błaha myśl.</p>
+<div class="wn"><a href="http://3dh.gsi.pl/gp/prywatne_sledztwo/">Po chwili jesteś martwy...</a></div>
+</div>
+
+<div id="p44">
+<p class="pr">44</p>
+<p><b>(Dowód 7)</b></p>
+<p>Niespodziewanie wypadasz na główną ulicę. Wyciągasz z kieszenie rewolwer i rzucasz go na ziemię, podnosząc przy tym ręce do góry. Ledwie kilkanaście metrów od siebie dostrzegasz policjanta, który widząc twoje zachowanie, sam sięga po broń i celując do Ciebie krzyczy łamiącym się głosem:</p>
+<p><i>– Stój!</i></p>
+<p>Mierzysz go pełnym politowania wzrokiem, czekając spokojnie na pojawienie się ścigających Cię ludzi z Instytutu. Po chwili są już na miejscu, wyraźnie zadowoleni takiego obrotu sprawy. Zamieniają kilka słów z policjantem, po czym ruszają w Twoją stronę. Jeden z nich zabiera porzuconą broń, drugi zakłada Ci kajdanki i oświadcza stanowczo:</p>
+<p><i>– Teraz sobie nazbierałeś człowieku. Nie chciałbym być w twojej skórze.</i></p>
+<p>Milczysz, oddychając Ciężko, czujesz jak chłodne powietrze wypełnia Twoje płuca. Kaszlesz głośno i spluwasz na ulicę. Zawsze chciałeś to zrobić. Jeden z mężczyzn bierze Cię pod ramię, drugi idzie za Wami w pewnej odległości, prawdopodobnie w każdej chwili gotowy do strzału. Myślisz sobie, że te środki ostrożności nie będą potrzebne; nie masz zamiaru uciekać po raz drugi. Nie wiesz co Cię czeka po aresztowaniu, przypuszczasz jednak, iż teraz Twoje próby jakiegokolwiek tłumaczenia się mogą zostać całkowicie zignorowane. Nie tylko narobiłeś sobie kłopotów, ale również w pewien sposób skompromitowałeś Instytut. A coś takiego jeszcze nikomu nie uszło płazem...</p>
+<div class="wn">Przejedź do Wniosku na <button class="b0" data-np="99">stronie <span>25</span></button></div>
+</div>
+
+<div id="p45">
+<p class="pr">45</p>
+<p>Wyciągasz jeden z formularzy, których plik na szczęście zawsze nosisz ze sobą „na wszelki wypadek”. Szybko spisujesz fikcyjne zeznania; bimbrownictwo, przemyt, pobicie kobiety. Nic wyszukanego, ale idealnie pasują do Twojego „przyjaciela” i mogą narobić mu sporo nieprzyjemności. Ten pobieżnie przegląda dokument i składa niezdarny podpis. Wypisujesz mu kilka czeków, mówiąc:</p>
+<p><i>– Nie bierz wszystkiego od razu, wystarczy raz w miesiącu. Będziesz sprawiał wrażenie ważnego informatora. Ludzie w bankach powoli przywykli już do tego, że Instytut wypłaca fundusze różnym podejrzanym indywiduum.</i></p>
+<p><i>– Dobra, dobra. Żegnam.</i></p>
+<p>Mężczyzna zabiera czeki i opuszcza spelunę. Czekasz kilka minut i również wychodzisz, kierując się pospiesznie do swojego hotelu. Masz tylko nadzieję, że jutrzejsze spotkanie przyniesie nareszcie jakieś konkretne, pozytywne <button class="b0" data-np="28">efekty. <span>(28)</span></button></p>
+</div>
+
+<div id="p46">
+<p class="pr">46</p>
+<p><i>– Sprytnie to sobie obmyśliłeś </i>– stwierdzasz z przekąsem.</p>
+<p><i>– Zgadzasz się, czy wolisz problemy?</i></p>
+<p><i>– Problemy? Ty żałosny śmieciu, jedyne co mi grozi to upomnienie. Jak myślisz, Instytut ostrzej ukarze własnego człowieka przyłapanego na igraszkami z nieletnią czy szantażystę, pijaczka, margines społeczeństwa? Powstaliśmy żeby tępić takie pluskwy jak ty!</i></p>
+<p>Wiedziony nagłym impulsem sięgasz do kieszenie i wyciągasz rewolwer. Odciągasz kurek i przystawiasz lufę do piersi mężczyzny. Wiesz, że po oddaniu strzału mógłbyś bez trudu ulotnić się z tej ciemnej uliczki niezauważony. Naprawdę kusi Cię żeby pociągnąć <button class="b0" data-np="47">za spust <span>(47)</span></button> i wyeliminować tego degenerata. Zabiłeś już raz człowieka kilka lat temu, na początku swojej służby. Pamiętasz jeszcze grozę wojny, naloty, stosy ciał. Śmierć Cię nie przeraża, o wiele bardziej boisz się życia.</p>
+<p><i>– Będę milczał...</i> – szepcze blady ze strachu mężczyzna.</p>
+<p>Widzisz jak nieszczęśnik dygocze, próbując coś powiedzieć. Pewnie chce błagać o litość. Biedny, przerażony głupiec. Teraz jego marne życie jest w Twoich rękach. Możesz okazać wspaniałomyślność i go <button class="b0" data-np="48">oszczędzić <span>(48)</span></button>.</p>
+</div>
+
+<div id="p47">
+<p class="pr">47</p>
+<p>Znajomy, choć niemal zapomniany odgłos wystrzału w akompaniamencie błysku. Twoja ofiara bezwładnie zwala się na ziemię, to wszystko. Odchodzisz śpiesznie, po chwili niknąc w zakamarkach miasta. Duży stres, żadna przyjemność, potężna dawka adrenaliny. Ulga...</p>
+<p>Po kwadransie kluczenia znów wkraczasz w blask latarni. Spoglądasz z niepokojem na swój płaszcz, jednak nie dostrzegasz żadnych śladów krwi. A przynajmniej nie takich, które od razu rzucałyby się w oczy. Krążysz jeszcze trochę po mieście, po czym wracasz do swojego hotelu. Musisz odpocząć przed jutrzejszym, ważnym <button class="b0" data-np="28">spotkaniem. <span>(28)</span></button></p>
+</div>
+
+<div id="p48">
+<p class="pr">48</p>
+<p>Każesz mu oddać dowód osobisty, mówiąc.</p>
+<p><i>– To na wypadek jakbym zechciał kiedyś cię odwiedzić.</i></p>
+<p><i>– Będę milczał!</i> – powtarza raz jeszcze roztrzęsiony, niedoszły szantażysta.</p>
+<p>Powoli chowasz broń i ostro każesz wynieść mu się w cholerę sprzed Twoich oczu, co też natychmiast czyni. Odprowadzasz go ponurym spojrzeniem, po czym ruszasz w drogę powrotną do swojego hotelu. Jutro czeka Cię przecież ważne <button class="b0" data-np="28">spotkanie. <span>(28)</span></button></p>
+</div>
+
+<div id="p99">
+<h2>Wniosek</h2>
+<p>Po złożeniu stosownych wyjaśnień, niecierpliwie oczekujesz w tymczasowym areszcie na rozpatrzenie swojej sprawy. Jak się dowiadujesz, w dokumentach Instytutu zostajesz oznaczony jako obiekt <b>Cn277</b>. Po około trzydziestu godzinach zostajesz ponownie wezwany przed komisję dyscyplinarną, która przekazuje Ci protokół.</p>
+<h2>Protokół</h2>
+<p><b><i>Część I</i></b></p> 
+<p>Jeśli podczas rozgrywki zostawiłeś dwa <b>Tropy</b> oznaczone tym samym numerem tworzą one <b>Dowód</b> (również oznaczony tym numerem). Sprawdź, jakie <b>Dowody</b> dotyczą Twojej sprawy i zapoznaj się z nimi. Każdy z ich kończy się dla Ciebie <b>Ostrzeżeniem</b> bądź <b>Reprymendą</b>. Zapisz uzyskane oznaczenia i przejdź do II Części protokołu <del>na stronie 27</del>.</p>
+<br><p><b><u>Dowody w sprawie:</u></b></p>
+<br><p><b>1</b> Obiekt <b>Cn277</b> posłużył się świadomie fałszywym nazwiskiem w celu uzyskaniu potrzebnych mu informacji. Wprowadzając w błąd recepcjonistkę (N.D. Horn) w szpitalu Wigton. Poprzez to naraził na szwank reputację IPP, nie działał bowiem w imieniu Instytutu, a własnym. Obiekt <b>Cn277</b> otrzymuje <b>Ostrzeżenie</b>. Zostanie ono niezwłocznie wpisane do jego akt służbowych.</p> 
+<br><p><b>2</b> Obiekt <b>Cn277</b>, poprzez swoją nadmierną dociekliwość, wzbudził niezdrowe zainteresowanie części mieszkańców Wigton sprawą niedawnego zatrzymania Joan Walker. Jak donoszą źródła ze wskazanego regionu, miejscowa ludność uważa, iż IPP wykazała się niekompetencją skoro najpierw zatrzymują kogoś, a potem wysyłają swojego człowieka, aby zdobył informację o zatrzymanej. Obiekt <b>Cn277</b> otrzymuje <b>Ostrzeżenie</b>. Zostanie ono niezwłocznie wpisane do jego akt służbowych.</p>
+<br><p><b>3</b> Obiekt <b>Cn277</b> skradł fartuch szpitalny i podawał się za lekarza szpitala w Wigton. Nie był wówczas na służbie, toteż zachowanie takie uznane zostało za wysoce naganne. Obiekt <b>Cn277</b> otrzymuje <b>Reprymendę</b>. Zostanie ona niezwłocznie wpisane do jego akt służbowych.</p>
+<br><p><b>4</b> Obiekt <b>Cn277</b>, w przebraniu lekarza (szpitala w Wigton), próbował wymóc presję słowną na obywatelu I. Z. Goodbyne, pełniącym funkcję Tymczasowego Pomocnika Instytutu. Gdy to zawiodło, posunął się do przemocy fizycznej, na skutek czego wspomniany obywatel doznał lekkich obrażeń głowy. Nawet biorąc stan silnego wzburzenia emocjonalnego obiektu <b>Cn277</b>,zachowanie takie jest karygodne i rzuca ono cień na działalności IPP. Obiekt <b>Cn277</b> otrzymuje <b>Reprymendę</b>. Zostanie ona niezwłocznie wpisana do jego akt służbowych.</p>
+<br><p><b>5</b> Obiekt <b>Cn277</b> próbował uzyskać informacje o interesującej go sprawie (sprawa zatrzymania J. Walker) na posterunku policji w Wigton. Mimo, iż nie pokazał legitymacji służbowej policjanci ustalili, że jest pracownikiem Instytutu (jeden z nich rozpoznał obiekt <b>Cn277</b>). Zgłosili ten fakt do jednego z pracowników Instytutu, poprzez to działanie obiektu <b>Cn277</b> uważa się za szkodliwe dla renomy IPP. Obiekt <b>Cn277</b> otrzymuje <b>Ostrzeżenie</b>. Zostanie ono niezwłocznie wpisane do jego akt służbowych.</p>
+<br><p><b>6</b> Obiekt <b>Cn277</b> dopuścił się jawnego aktu wandalizmu (podpalenie tablicy ogłoszeń w szpitalu w Wigton). Jak sam zeznał, chciał w ten sposób „odwrócić uwagę” obywatela I. Z. Goodbyne, który pełnił funkcję Tymczasowego Pomocnika Instytutu. Postępek ten w sposób oczywisty działa na niekorzyść Instytutu i jego dobrego imienia. Obiekt <b>Cn277</b> otrzymuje <b>Reprymendę</b>. Zostanie ona niezwłocznie wpisane do jego akt służbowych.</p>
+<br><p><b>7</b> Obiekt <b>Cn277</b> dopuścił się aktu wrogości wobec pracowników IPP oraz został aresztowany podczas próby ucieczki. To jaskrawe naruszenie nie tylko wewnętrznych dyrektyw IPP, ale i samego porządku publicznego, w obronie którego występuje Instytut, jednoznacznie kwalifikuje obiekt <b>Cn277</b> do udzielenia mu <b>Nagany</b>. Zostanie ona <u>niezwłocznie!</u> wpisana do jego akt służbowych.</p>
+<br><p><b><i>Część II</i></b></p>
+<p><i>Jeśli otrzymałeś dwa <b>Ostrzeżenia</b> należy traktować je jako <b>Reprymendę</b>, zaś <b>Nagana</b> liczona jest jak dwie <b>Reprymendy</b>. Policz teraz wszystkie <b>Reprymendy</b> (odejmij jedną, jeśli posiadasz <b>Informację #2</b>). W przypadku, gdy:</i></p>
+<p><i>Nie posiadasz żadnej, bądź nie więcej niż jedną przejdź do Wniosku I.</i></p>
+<p><i>Posiadasz dwie, przejdź do Wniosku II.</i></p>
+<p><i>Posiadasz trzy, przejdź do Wniosku III.</i></p>
+<p><i>Posiadasz więcej niż trzy, przejdź do Wniosku IV.</i></p>
+<br><p><b>Wniosek I</b></p>
+<p>Wprawdzie obiekt <b>Cn277</b> działał pochopnie, mimo to jego zachowanie może być częściowo usprawiedliwione ze względu na stan silnego wzburzenia emocjonalnego, w którym się znajdował. Na jego korzyść świadczy też nienaganny, wzorowy wręcz przebieg służby w strukturach IPP. Dlatego też nie wysunięte zostaną wobec niego żadne oskarżenia.</p>
+<p>W sprawie, J. Walker, która to żywo interesowała wspomniany już obiekt zapadł wyrok skazujący. Za bliskie kontakty ze światem przestępczym oraz niemoralne prowadzenie się skazana została na pięć lat pozbawiona wolności bez możliwości wcześniejszego zwolnienia. Jej dziecko, po urodzeniu, zostanie przekazane do odpowiedniej placówki oświatowo-wychowawczej IPP i wychowane na przykładnego obywatela Imperium Brytyjskiego.</p>
+<br><p><b>Wniosek II</b></p>
+<p>Obiekt <b>Cn277</b> swoim postępowaniem udowodnił całkowity brak zdrowego rozsądku oraz praworządności wymaganej od pracowników IPP. Jego niesubordynacja i samowola źle wpływają na wizerunek Instytutu i przynoszą mu ujmę. Jedynie nienaganna służba wspomnianego obiektu oraz nagłe, wynikające niestety z jego niemoralności, problemy natury emocjonalnej, stanowią tu pewną okoliczność łagodzącą. Obiekt zachowa swoje dotychczasowe stanowisko, nie mniej przez najbliższe dwa lata pozbawiony zostaje szansy awansu. Wraz z żoną musi się również udać na cyklicznie organizowane przez Instytut warsztaty dobrego życia małżeńskiego.</p>
+<p>W sprawie uwodzicielki, J. Walker, której rozwiązłość seksualna doprowadziła do upadku moralnego obiektu <b>Cn277</b>, powzięte zostały odpowiednie środki zaradcze. Za bliskie kontakty ze światem przestępczym oraz niemoralne prowadzenie się skazana została na pięć lat pozbawiona wolności bez możliwości wcześniejszego zwolnienia. Jej dziecko, po urodzeniu, zostanie przekazane do odpowiedniej placówki oświatowowychowawczej IPP i wychowane na przykładnego obywatela Imperium Brytyjskiego.</p>
+<br><p><b>Wniosek III</b></p>
+<p>Obiekt <b>Cn277</b> zostaje tymczasowo zawieszony w obowiązkach służbowych i skierowany na przymusowy, bezpłatny urlop w wymiarze trzech miesięcy. Stojąc w obliczu tak poważnego załamania swojej kariery, obiekt ma prawo do próby ratowania swojej reputacji poprzez zadanie specjalne. W tym wypadku może to być dalsze, fikcyjne zaangażowanie emocjonalne w stosunku do J. Walker. Obiekt <b>Cn277</b> miałby za zadanie poprzez manewry psychologiczne wydobyć od oskarżonej informacje na temat wspólników jej ojca, Dereka Walkera, handlarza bronią.</p>
+<p>W przypadku odmowy współpracy na tym gruncie, obiekt <b>Cn277</b> ma oczywiście szansę na odbudowę swojej kariery poprzez wieloletnią, nienaganną służbę.</p>
+<br><p><b>Wniosek IV</b></p>
+<p>Obiekt <b>Cn277</b> to zbrodniczy element, niegodny noszenia zaszczytnego miana członka Instytutu Porządku Publicznego toteż z dniem dzisiejszym oficjalnie pozbawiony zostaje wszelkich dotychczasowych funkcji oraz usunięty z Instytutu.</p>
+<p>Skazany jest również na okres trzyletniego pobytu w zakładzie karnym o zaostrzonym rygorze bez prawa apelacji. Jego kochanka, J. Walker, za bliskie kontakty ze światem przestępczym oraz niemoralne prowadzenie się skazana została na pięć lat pozbawiona wolności bez możliwości wcześniejszego zwolnienia. Jej dziecko, po urodzeniu, zostanie przekazane do odpowiedniej placówki oświatowo-wychowawczej IPP i wychowane na przykładnego obywatela Imperium Brytyjskiego. Żona obiektu <b>Cn277</b> otrzyma od Instytuty pomoc materialną w ramach rekompensaty za straty moralne. Podlega też rozporządzeniu IPP, które zakazuje w podobnych przypadkach wszelkich kontaktów z prasą krajową i zagraniczną pod groźbą pozbawienia dotacji.</p>
+</div>
+
+<div id="karta">
+<p><button class="b0" data-note="1">Schowaj Notatnik</button></p>
+<div id="zaw"></div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+document.title='Prywatne śledztwo - '+p;
+document.getElementById('p'+p).style.display='block';
+var elements=document.getElementsByTagName('button'),
+len=elements.length;
+for (var y=0;y<len;++y){
+if(elements[y].getAttribute('data-np')){
+elements[y].onclick=function(){zp(p,this.getAttribute('data-np'));};
+}
+if(elements[y].getAttribute('data-note')){
+elements[y].onclick=function(){note(this);};
+}
+}
+load();
+</script>
+</body>
+</html>
