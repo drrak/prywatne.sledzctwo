@@ -1,2 +1,2 @@
-# reka.pana
+# prywatne.sledzctwo
 Gra paragrafowa
